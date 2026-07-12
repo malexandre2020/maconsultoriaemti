@@ -255,6 +255,32 @@
   }
   .service-row:hover .service-arrow{ opacity:1; transform:translateX(0); }
 
+  /* Produtos */
+  .product-intro{ max-width:680px; margin-bottom:34px; }
+  .product-intro p{ color: var(--text-muted); font-size:1.03rem; margin-bottom:16px; }
+  .product-intro p strong{ color: var(--text); font-weight:600; }
+  .product-gallery{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:24px;
+    margin-top:44px;
+  }
+  .product-shot{
+    background: var(--panel);
+    border:1px solid var(--border-strong);
+    overflow:hidden;
+  }
+  .product-shot.featured{ grid-column: 1 / -1; }
+  .product-shot .mock-bar{ padding:11px 14px; }
+  .product-shot img{ width:100%; display:block; }
+  .product-shot figcaption{
+    padding:16px 20px;
+    border-top:1px solid var(--border);
+    font-size:0.88rem;
+    color: var(--text-muted);
+  }
+  .product-shot figcaption b{ color: var(--text); font-weight:600; }
+
   /* About */
   .about{ background: var(--bg-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
   .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:70px; align-items:start; }
@@ -318,6 +344,7 @@
     .contact-cols{ grid-template-columns:1fr; }
     .contact-col:first-child{ border-right:none; border-bottom:1px solid var(--border); }
     .service-row{ grid-template-columns: 50px 1fr; gap:20px; }
+    .product-gallery{ grid-template-columns:1fr; }
     section{ padding:76px 0; }
     .cta-strip{ flex-direction:column; align-items:flex-start; }
   }
@@ -333,6 +360,7 @@
     </a>
     <div class="nav-links">
       <a href="#servicos">Serviços</a>
+      <a href="#produtos">Produtos</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </div>
@@ -437,6 +465,75 @@
             <p>Orientação para escolher a solução certa dentro do orçamento e da realidade da sua empresa.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Produto próprio</span>
+        <h2>GSC — Sistema de Gestão de Serviços</h2>
+        <p>Desenvolvido pela MA Consultoria para empresas que prestam serviço com equipe de campo: agenda, ordens de serviço, projetos, viagens e relatórios centralizados em um só sistema.</p>
+      </div>
+
+      <div class="product-intro">
+        <p>O GSC é organizado em <strong>módulos independentes</strong> — Dashboard, Agenda de Consultores, Ordens de Serviço, Viagem e Hospedagem, Gestão de Projetos e Relatórios. Cada empresa ativa só os módulos que fazem sentido para a operação dela hoje, e adiciona mais conforme o negócio cresce, sem precisar trocar de sistema.</p>
+        <div class="tag-row">
+          <span class="tag">Dashboard</span>
+          <span class="tag">Agenda de consultores</span>
+          <span class="tag">Ordens de serviço</span>
+          <span class="tag">Viagem e hospedagem</span>
+          <span class="tag">Gestão de projetos</span>
+          <span class="tag">Relatórios</span>
+        </div>
+      </div>
+
+      <div class="product-gallery">
+        <figure class="product-shot featured">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">gestao-de-servicos.vercel.app</span>
+          </div>
+          <img src="demo-inclusao-agenda-consultor.gif" alt="Demonstração: inclusão de um novo agendamento na agenda de consultores do GSC">
+          <figcaption><b>Agenda de consultores</b> — inclusão de agendamentos em tempo real, com visão por cliente e por consultor.</figcaption>
+        </figure>
+
+        <figure class="product-shot">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">gestao-de-servicos.vercel.app</span>
+          </div>
+          <img src="4-dashboard-centralizado.png" alt="Dashboard centralizado do GSC com visão geral da operação">
+          <figcaption><b>Dashboard</b> — visão geral centralizada de agenda, ordens de serviço, viagens, projetos e cadastros.</figcaption>
+        </figure>
+
+        <figure class="product-shot">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">gestao-de-servicos.vercel.app</span>
+          </div>
+          <img src="2-gestao-de-projetos-kanban.png" alt="Gestão de projetos em quadro kanban no GSC">
+          <figcaption><b>Gestão de projetos</b> — acompanhamento em quadro kanban, com prazos, prioridades e progresso.</figcaption>
+        </figure>
+
+        <figure class="product-shot">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">gestao-de-servicos.vercel.app</span>
+          </div>
+          <img src="1-agenda-inteligente.png" alt="Calendário mensal da agenda de consultores no GSC">
+          <figcaption><b>Agenda</b> — calendário mensal por consultor, com identificação por cliente.</figcaption>
+        </figure>
+
+        <figure class="product-shot">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">gestao-de-servicos.vercel.app</span>
+          </div>
+          <img src="3-relatorios-e-indicadores.png" alt="Relatórios e indicadores de desempenho no GSC">
+          <figcaption><b>Relatórios</b> — indicadores de desempenho e ocupação da equipe.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
