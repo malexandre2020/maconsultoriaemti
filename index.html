@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA Consultoria em TI | Sites e Sistemas de Gestão</title>
+<meta name="description" content="MA Consultoria em TI — criação de sites profissionais e sistemas de gestão sob medida, com atendimento direto.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-user-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-user-192.png">
+<link rel="apple-touch-icon" href="favicon-user-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #05070d;
+    --bg-alt: #090c17;
+    --panel: #0d1120;
+    --border: rgba(255,255,255,0.09);
+    --border-strong: rgba(255,255,255,0.18);
+    --text: #eef1f8;
+    --text-muted: #8a92ab;
+    --text-faint: #545d72;
+    --cyan: #22e5ff;
+    --blue: #5b8cff;
+    --magenta: #c04dff;
+    --sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.65;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1180px; margin:0 auto; padding:0 32px;}
+  ::selection{ background: rgba(34,229,255,0.25); }
+
+  /* faint grid texture on body */
+  body{
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+  }
+
+  .cut{ clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px); }
+  .cut-sm{ clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px); }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family: var(--mono);
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color: var(--cyan);
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background: var(--cyan);
+    display:inline-block;
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:100;
+    background: rgba(5,7,13,0.86);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ height:40px; width:auto; }
+  .brand-name{ font-weight:700; font-size:1.02rem; line-height:1.15; }
+  .brand-name small{ display:block; font-weight:400; font-size:0.68rem; letter-spacing:0.08em; color:var(--text-muted); font-family:var(--mono); text-transform:uppercase; margin-top:2px;}
+  .nav-links{ display:flex; gap:38px; font-size:0.92rem; color:var(--text-muted); }
+  .nav-links a{ position:relative; padding:4px 0; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background: var(--cyan); transition: width 0.2s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    font-family:var(--mono); font-size:0.82rem; font-weight:500;
+    padding:11px 20px;
+    background: linear-gradient(120deg, var(--cyan), var(--blue) 60%, var(--magenta));
+    color:#04050a; font-weight:600;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px;
+    font-weight:600; font-size:0.95rem;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background: linear-gradient(120deg, var(--cyan), var(--blue) 60%, var(--magenta));
+    color:#04050a;
+  }
+  .btn-link{
+    font-family: var(--mono);
+    font-size:0.85rem;
+    color: var(--text);
+    border-bottom:1px solid var(--border-strong);
+    padding:15px 0;
+    gap:10px;
+  }
+  .btn-link span{ transition: transform 0.2s ease; }
+  .btn-link:hover span{ transform: translateX(4px); }
+
+  /* Hero */
+  .hero{ padding:96px 0 60px; }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap:64px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:3rem;
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:22px 0 24px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color: var(--cyan);
+  }
+  .hero p.lead{
+    color: var(--text-muted);
+    font-size:1.08rem;
+    max-width:520px;
+    margin-bottom:34px;
+  }
+  .hero-actions{ display:flex; align-items:center; gap:34px; flex-wrap:wrap; margin-bottom:40px;}
+  .tag-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    font-family:var(--mono);
+    font-size:0.76rem;
+    color: var(--text-muted);
+    border:1px solid var(--border);
+    padding:7px 13px;
+  }
+
+  /* Hero visual mockup */
+  .hero-visual{ position:relative; }
+  .hero-visual .glow{
+    position:absolute; inset:-40px;
+    background: radial-gradient(circle at 60% 30%, rgba(91,140,255,0.22), transparent 60%);
+    filter: blur(10px);
+    z-index:0;
+  }
+  .mock-card{
+    position:relative; z-index:1;
+    background: var(--panel);
+    border:1px solid var(--border-strong);
+    transform: perspective(1000px) rotateY(-6deg) rotateX(2deg);
+    box-shadow: 30px 40px 80px rgba(0,0,0,0.55);
+  }
+  .mock-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:13px 16px;
+    border-bottom:1px solid var(--border);
+  }
+  .mock-dot{ width:8px; height:8px; border-radius:50%; background: var(--text-faint); }
+  .mock-url{
+    margin-left:10px;
+    font-family: var(--mono);
+    font-size:0.7rem;
+    color: var(--text-faint);
+    border:1px solid var(--border);
+    padding:3px 12px;
+    flex:1;
+  }
+  .mock-body{ padding:22px; display:grid; gap:14px; }
+  .mock-hero-block{
+    height:96px;
+    background: linear-gradient(120deg, rgba(34,229,255,0.16), rgba(192,77,255,0.14));
+    border:1px solid var(--border);
+  }
+  .mock-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .mock-chip{ height:64px; background: rgba(255,255,255,0.03); border:1px solid var(--border); }
+  .mock-lines{ display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+  .mock-lines span{ display:block; height:7px; background: rgba(255,255,255,0.07); }
+  .mock-lines span:nth-child(1){ width:70%; }
+  .mock-lines span:nth-child(2){ width:45%; }
+  .mock-chart{
+    margin-top:6px;
+    display:flex; align-items:flex-end; gap:6px; height:54px;
+    border-top:1px solid var(--border); padding-top:12px;
+  }
+  .mock-chart i{ display:block; flex:1; background: linear-gradient(180deg, var(--cyan), var(--blue)); opacity:0.75; }
+
+  .bracket{
+    position:absolute; width:56px; height:56px;
+    border-color: var(--cyan); border-style:solid; border-width:0;
+    opacity:0.8; z-index:2;
+  }
+  .bracket.tl{ top:-14px; left:-14px; border-top-width:2px; border-left-width:2px; }
+  .bracket.br{ bottom:-14px; right:-14px; border-bottom-width:2px; border-right-width:2px; }
+
+  /* Section shell */
+  section{ padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:64px; }
+  .section-head .eyebrow{ margin-bottom:18px; }
+  .section-head h2{ font-size:2.2rem; font-weight:800; margin-bottom:16px; letter-spacing:-0.01em; }
+  .section-head p{ color: var(--text-muted); font-size:1.05rem; }
+
+  /* Services list */
+  .service-row{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap:36px;
+    padding:36px 0;
+    border-top:1px solid var(--border);
+    align-items:start;
+    transition: background 0.2s ease;
+  }
+  .services-list .service-row:last-child{ border-bottom:1px solid var(--border); }
+  .service-index{
+    font-family: var(--mono);
+    font-size:0.95rem;
+    color: var(--text-faint);
+    padding-top:4px;
+    transition: color 0.2s ease;
+  }
+  .service-row:hover .service-index{ color: var(--cyan); }
+  .service-content h3{
+    font-size:1.28rem; font-weight:700; margin-bottom:10px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .service-content p{ color: var(--text-muted); max-width:640px; }
+  .service-arrow{
+    opacity:0; transform:translateX(-6px);
+    transition: all 0.2s ease;
+    color: var(--cyan);
+    font-family:var(--mono); font-size:1rem;
+  }
+  .service-row:hover .service-arrow{ opacity:1; transform:translateX(0); }
+
+  /* About */
+  .about{ background: var(--bg-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:70px; align-items:start; }
+  .about-text .eyebrow{ margin-bottom:18px; }
+  .about-text h2{ font-size:2.1rem; font-weight:800; margin-bottom:22px; letter-spacing:-0.01em; }
+  .about-text p{ color: var(--text-muted); margin-bottom:16px; font-size:1.02rem; max-width:520px; }
+  .checklist{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:26px; }
+  .checklist li{ display:flex; align-items:baseline; gap:12px; font-size:0.98rem; }
+  .checklist li::before{ content:"—"; color: var(--cyan); font-family:var(--mono); }
+
+  .spec-panel{
+    position:relative;
+    background: var(--panel);
+    border:1px solid var(--border-strong);
+    padding:40px;
+  }
+  .spec-panel .eyebrow{ margin-bottom:20px; }
+  .spec-panel h3{ font-size:1.35rem; font-weight:700; line-height:1.4; margin-bottom:22px; }
+  .spec-divider{ height:1px; background: var(--border); margin:22px 0; }
+  .spec-facts{ display:flex; flex-direction:column; gap:14px; }
+  .spec-fact{ display:grid; grid-template-columns:88px 1fr; gap:14px; font-size:0.86rem; }
+  .spec-fact b{ font-family:var(--mono); color: var(--text-faint); font-weight:500; letter-spacing:0.04em; }
+  .spec-fact span{ color: var(--text-muted); }
+
+  /* Contact */
+  .contact-panel{
+    position:relative;
+    border:1px solid var(--border-strong);
+    background: var(--panel);
+  }
+  .contact-cols{ display:grid; grid-template-columns:1fr 1fr; }
+  .contact-col{ padding:40px; }
+  .contact-col:first-child{ border-right:1px solid var(--border); }
+  .contact-col .eyebrow{ margin-bottom:16px; }
+  .contact-col a{ font-size:1.3rem; font-weight:700; }
+  .contact-col a:hover{ color: var(--cyan); }
+
+  .cta-strip{
+    margin-top:28px;
+    border:1px solid var(--border-strong);
+    padding:40px 44px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+    position:relative;
+  }
+  .cta-strip h3{ font-size:1.3rem; font-weight:700; margin-bottom:8px; }
+  .cta-strip p{ color: var(--text-muted); font-size:0.95rem; }
+
+  /* Footer */
+  footer{ border-top:1px solid var(--border); padding:34px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted); }
+  .footer-brand img{ height:24px; width:auto; }
+  footer .footer-meta{ color: var(--text-faint); font-size:0.82rem; font-family:var(--mono); }
+
+  @media (max-width: 980px){
+    .nav-links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; max-width:440px; }
+    .hero h1{ font-size:2.3rem; }
+    .about-grid{ grid-template-columns:1fr; }
+    .contact-cols{ grid-template-columns:1fr; }
+    .contact-col:first-child{ border-right:none; border-bottom:1px solid var(--border); }
+    .service-row{ grid-template-columns: 50px 1fr; gap:20px; }
+    section{ padding:76px 0; }
+    .cta-strip{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <img src="logo-user-nav.png" alt="MA Consultoria em TI">
+      <span class="brand-name">MA Consultoria<small>Em TI</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="mailto:malexandre@maconsultoria.net" class="nav-cta cut-sm">Fale comigo</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Consultoria em tecnologia</span>
+        <h1>Sites e sistemas de gestão feitos para <em>funcionar melhor</em>.</h1>
+        <p class="lead">Desenvolvo sites profissionais e sistemas sob medida — do primeiro rascunho ao suporte depois da entrega, com atendimento direto, sem intermediários.</p>
+        <div class="hero-actions">
+          <a href="mailto:malexandre@maconsultoria.net" class="btn btn-primary cut">Solicitar orçamento</a>
+          <a href="#servicos" class="btn-link">Ver serviços <span>→</span></a>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Sites institucionais</span>
+          <span class="tag">Lojas virtuais</span>
+          <span class="tag">Sistemas de gestão</span>
+          <span class="tag">Automações</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glow"></div>
+        <div class="bracket tl"></div>
+        <div class="bracket br"></div>
+        <div class="mock-card">
+          <div class="mock-bar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="mock-url">maconsultoria.net</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-hero-block"></div>
+            <div class="mock-lines"><span></span><span></span></div>
+            <div class="mock-row">
+              <div class="mock-chip"></div>
+              <div class="mock-chip"></div>
+              <div class="mock-chip"></div>
+            </div>
+            <div class="mock-chart">
+              <i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i>
+              <i style="height:85%"></i><i style="height:60%"></i><i style="height:72%"></i>
+              <i style="height:45%"></i><i style="height:90%"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">O que realizamos</span>
+        <h2>Serviços</h2>
+        <p>Da criação do site ao sistema que roda a operação — soluções pensadas para o tamanho e o momento do seu negócio.</p>
+      </div>
+      <div class="services-list">
+        <div class="service-row">
+          <div class="service-index">01</div>
+          <div class="service-content">
+            <h3>Criação de sites <span class="service-arrow">→</span></h3>
+            <p>Sites institucionais, landing pages e portais responsivos, desenvolvidos do zero e otimizados para conversão.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-index">02</div>
+          <div class="service-content">
+            <h3>Sistemas de gestão <span class="service-arrow">→</span></h3>
+            <p>ERPs e sistemas internos sob medida para controlar vendas, estoque, financeiro e operações em um só lugar.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-index">03</div>
+          <div class="service-content">
+            <h3>E-commerce <span class="service-arrow">→</span></h3>
+            <p>Lojas virtuais completas, com catálogo, pagamento e integrações para vender online com segurança.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-index">04</div>
+          <div class="service-content">
+            <h3>Integrações e automações <span class="service-arrow">→</span></h3>
+            <p>Conecto ferramentas e automatizo processos para reduzir retrabalho manual no dia a dia.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-index">05</div>
+          <div class="service-content">
+            <h3>Manutenção e suporte <span class="service-arrow">→</span></h3>
+            <p>Atualizações, correções e evolução contínua, com suporte técnico direto comigo.</p>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-index">06</div>
+          <div class="service-content">
+            <h3>Consultoria em TI <span class="service-arrow">→</span></h3>
+            <p>Orientação para escolher a solução certa dentro do orçamento e da realidade da sua empresa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container about-grid">
+      <div class="about-text">
+        <span class="eyebrow">Sobre</span>
+        <h2>Tecnologia sob medida, sem enrolação</h2>
+        <p>A MA Consultoria em TI existe para tirar sites e sistemas do papel sem a burocracia de uma agência grande — cada projeto é pensado para a necessidade real do negócio, não para um pacote fechado.</p>
+        <p>O contato é direto comigo, do primeiro briefing ao suporte depois da entrega.</p>
+        <ul class="checklist">
+          <li>Atendimento direto, sem intermediários</li>
+          <li>Projetos sob medida, sem pacotes genéricos</li>
+          <li>Boas práticas de segurança e performance</li>
+        </ul>
+      </div>
+      <div class="spec-panel cut">
+        <span class="eyebrow">Como trabalho</span>
+        <h3>Entender o negócio antes de escrever a primeira linha de código.</h3>
+        <div class="spec-divider"></div>
+        <div class="spec-facts">
+          <div class="spec-fact"><b>STACK</b><span>Web moderno e sistemas sob medida</span></div>
+          <div class="spec-fact"><b>CONTATO</b><span>Direto, sem intermediários</span></div>
+          <div class="spec-fact"><b>ESCOPO</b><span>Definido com você antes de começar</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Contato</span>
+        <h2>Vamos conversar sobre o seu projeto</h2>
+        <p>Conte o que você precisa e eu retorno com os próximos passos.</p>
+      </div>
+
+      <div class="contact-panel cut">
+        <div class="contact-cols">
+          <div class="contact-col">
+            <span class="eyebrow">Telefone / WhatsApp</span><br><br>
+            <a href="tel:+5511999796343">+55 11 99979-6343</a>
+          </div>
+          <div class="contact-col">
+            <span class="eyebrow">E-mail</span><br><br>
+            <a href="mailto:malexandre@maconsultoria.net">malexandre@maconsultoria.net</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip cut">
+        <div>
+          <h3>Pronto para começar?</h3>
+          <p>Envie um e-mail com um resumo do projeto e eu retorno com os próximos passos.</p>
+        </div>
+        <a href="mailto:malexandre@maconsultoria.net" class="btn btn-primary cut">Solicitar orçamento</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="logo-user-nav.png" alt="MA Consultoria em TI">
+      MA Consultoria em TI
+    </div>
+    <span class="footer-meta">© 2026 MA CONSULTORIA EM TI</span>
+  </div>
+</footer>
+
+</body>
+</html>
